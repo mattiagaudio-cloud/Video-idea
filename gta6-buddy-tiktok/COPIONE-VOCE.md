@@ -50,11 +50,11 @@ Condizioni e info? Le trovi nel link in bio.
 
 | Tempo | Voce | Microgame / comando sullo schermo |
 |---|---|---|
-| 0–3 s | "GTA 6 è uscito… gratis." | Si parte già dentro un gioco: **GIOCA!** Una città notturna al neon disegnata da me (nessuna grafica o logo ufficiale), un pulsante "PLAY" con il prezzo barrato. |
+| 0–3 s | "GTA 6 è uscito… gratis." | Si parte già dentro un gioco: **GIOCA!** Una città notturna al neon disegnata da me, con la scritta "GTA 6" nel lettering del video, un pulsante "PLAY" con il prezzo barrato. |
 | 3–8 s | "Ti spiego come… ottanta euro!" | **APRI!** un telefono a pastelli → **INSERISCI!** il codice digitato su un terminale verde → **INCASSA!** pioggia di monete in stampa risograph: 80 €. |
 | 8–12 s | "GTA costa… un centesimo." | **PAGA!** Grafica svizzera: 80,00 − 79,99 = **0,01**. La monetina da un centesimo rotola via (la gag). |
 | 12–17 s | "Ora tocca a te… gratis." | **TOCCA A TE!** Il codice **B2601M2FCQ7OBC** enorme, a tutto schermo, in caratteri ben leggibili, e resta in alto per il resto del video. |
 | 17–23 s | "E non è finita… Cinquanta!" | **SPEED UP!** **INVITA!** Gli amici arrivano sempre più veloci, +50 € +50 € +50 €, ogni volta in uno stile diverso. |
 | 23–27 s | "Condizioni… link in bio." | Si torna al palco: freccia verso l'alto **LINK IN BIO**, il codice ancora visibile. |
 
-Sempre visibile in un angolo, piccolo: *"Codice referral: ricevo un bonus per ogni iscrizione · messaggio promozionale"*.
+Il codice sullo schermo è `B2601M2FCQ7OBC` (dopo il 7 c'è la **lettera O**). Il nome scritto è solo **Buddy**. La musica la aggiungi tu su TikTok: il video esce con voce ed effetti sonori.
