@@ -62,6 +62,18 @@ MAPS['anime'] = {'hit': (lambda: norm(mixat(boom(), bp(noise(.3), 2000, 8000) * 
     'swish': (lambda: whoosh(.22), .3), 'shine': (lambda: mixat(bell(2093, 1.0, .25), bell(3136, .8, .2), .05), .22), 'tap': (lambda: click(1.3, .7), .3),
     'ok': (lambda: mixat(bell(1046, .7, .2), bell(1568, .7, .2), .07), .22), 'ting': (lambda: coin(1.3), .3), 'buzz': (lambda: norm(tone(120, 120, .12, .08) + bp(noise(.12), 300, 900) * .3), .18),
     'coin': (lambda: mixat(coin(1.0), bell(1568, .6, .15), .03), .25)}
+MAPS['neon'] = {'strike': (lambda: norm(mixat(click(.8, 1) * .8, (np.sin(2 * np.pi * 100 * t_(.4)) * .5 + bp(noise(.4), 2000, 6000) * .15) * env_exp(.4, .15) * (np.floor(t_(.4) * 60) % 2), .0)), .35),
+    'hum': (lambda: norm(np.sin(2 * np.pi * 100 * t_(.9)) + .4 * np.sin(2 * np.pi * 200 * t_(.9))) * np.sin(np.pi * t_(.9) / .9), .18), 'click': (lambda: click(1.1, .8), .3),
+    'tick': (lambda: click(1.8, .5), .2), 'fail': (lambda: norm(bp(noise(.5), 1500, 7000) * (np.random.default_rng(3).random(int(.5 * SR)) > .7)), .3)}
+def slidew(f0, f1, d): tt = t_(d); f = np.linspace(f0, f1, len(tt)) * (1 + .01 * np.sin(2 * np.pi * 6 * tt)); return np.sin(2 * np.pi * np.cumsum(f) / SR) * np.sin(np.pi * tt / d) ** .5
+def honk(): tt = t_(.3); x = np.sign(np.sin(2 * np.pi * 330 * tt)) * .6 + np.sign(np.sin(2 * np.pi * 415 * tt)) * .4; return norm(lp(x, 2500) * np.sin(np.pi * tt / .3) ** .3)
+def block(p=1.0): tt = t_(.12); return norm(np.sin(2 * np.pi * 900 * p * tt) * env_exp(.12, .02) + bp(noise(.12), 1500, 4000) * env_exp(.12, .004) * .5)
+MAPS['thirties'] = {'iris': (lambda: soft_whoosh(.4), .25), 'boing': (lambda: norm(tone(160, 480, .4, .25) * (1 + .4 * np.sin(2 * np.pi * 16 * t_(.4)))), .35), 'pop': (lambda: pop(), .35),
+    'slide': (lambda: slidew(400, 1400, .45), .25), 'whistle': (lambda: slidew(1500, 500, .5), .25), 'honk': (honk, .35), 'giggle': (lambda: np.concatenate([slidew(900, 1200, .08), slidew(1000, 1300, .08), slidew(900, 1250, .1)]), .25),
+    'ding': (lambda: bell(1318, .9, .25), .25), 'block': (lambda: block(1.0), .3), 'gulp': (lambda: norm(tone(300, 120, .15, .06)), .35)}
+def vib(f, d=1.2): tt = t_(d); return norm(np.sin(2 * np.pi * f * tt) * env_exp(d, .45) * (1 + .3 * np.sin(2 * np.pi * 5.5 * tt)) + np.sin(2 * np.pi * f * 4 * tt) * env_exp(d, .05) * .2)
+MAPS['fifties'] = {'boom': (lambda: lp(boom(), 800), .35), 'pop': (lambda: pop(), .3), 'tink': (lambda: vib(1568, .6), .2), 'vibe': (lambda: norm(mixat(mixat(vib(523), vib(659), .04), vib(784), .08)), .3),
+    'iris': (lambda: soft_whoosh(.3), .22), 'tap': (lambda: block(1.3) if 'block' in globals() else click(1.3), .25)}
 M = MAPS[STYLE]; fx = np.zeros((N, 2))
 for i, e in enumerate(E['ev']):
     if e['type'] not in M: print('no sound for', e['type']); continue
