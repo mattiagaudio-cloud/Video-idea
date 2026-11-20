@@ -74,6 +74,13 @@ MAPS['thirties'] = {'iris': (lambda: soft_whoosh(.4), .25), 'boing': (lambda: no
 def vib(f, d=1.2): tt = t_(d); return norm(np.sin(2 * np.pi * f * tt) * env_exp(d, .45) * (1 + .3 * np.sin(2 * np.pi * 5.5 * tt)) + np.sin(2 * np.pi * f * 4 * tt) * env_exp(d, .05) * .2)
 MAPS['fifties'] = {'boom': (lambda: lp(boom(), 800), .35), 'pop': (lambda: pop(), .3), 'tink': (lambda: vib(1568, .6), .2), 'vibe': (lambda: norm(mixat(mixat(vib(523), vib(659), .04), vib(784), .08)), .3),
     'iris': (lambda: soft_whoosh(.3), .22), 'tap': (lambda: block(1.3) if 'block' in globals() else click(1.3), .25)}
+def siren(d=1.2): tt = t_(d); f = 700 + 250 * np.sign(np.sin(2 * np.pi * 1.6 * tt)); return norm(np.sin(2 * np.pi * np.cumsum(f) / SR) * np.sin(np.pi * tt / d))
+def engine(d=1.0): tt = t_(d); f = np.linspace(55, 120, len(tt)); x = np.sign(np.sin(2 * np.pi * np.cumsum(f) / SR)) * .5 + lp(noise(d), 300) * .5; return norm(lp(x, 900) * np.sin(np.pi * tt / d) ** .5)
+def riser(d=.8): tt = t_(d); return norm(bp(noise(d), 1500, 8000) * (tt / d) ** 2 + tone(200, 900, d, 10) * (tt / d) * .4)
+MAPS['trailer'] = {'boom': (lambda: norm(mixat(boom(), bp(noise(.4), 100, 3000) * env_exp(.4, .06), 0)), .55), 'riser': (riser, .25), 'engine': (engine, .3), 'siren': (siren, .12),
+    'cut': (lambda: thump(.8, 60), .3), 'tap': (lambda: click(1.3, .7), .28), 'ok': (lambda: mixat(bell(1046, .6, .15), bell(1568, .6, .15), .07), .2),
+    'cash': (lambda: mixat(bp(noise(.35), 1000, 6000) * env_exp(.35, .08), bell(2093, .5, .1) * .5, .05), .3), 'hit': (lambda: thump(1, 80), .45),
+    'slap': (lambda: norm(bp(noise(.08), 800, 5000) * env_exp(.08, .015)), .35), 'ting': (lambda: coin(1.4), .35), 'whoosh': (lambda: soft_whoosh(.35), .3)}
 M = MAPS[STYLE]; fx = np.zeros((N, 2))
 for i, e in enumerate(E['ev']):
     if e['type'] not in M: print('no sound for', e['type']); continue
