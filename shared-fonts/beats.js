@@ -23,3 +23,7 @@ export const T = {
   eGta: 21.34, praticamente: 22.10, gratis2: 22.60, nonFinita: 23.46, ogniAmico: 24.52, altri50: 25.72, cinquanta0: 26.35,
   c1: 27.45, c2: 28.35, c3: 29.15, condizioni: 29.93, linkBio: 31.33, bio: 32.10,
 };
+// voice loudness at 30 fps (0..1), for mouth flaps: fetched once by the page
+export let MOUTH = [];
+export const loadMouth = () => fetch('mouth.json').then(r => r.json()).then(a => { MOUTH = a; });
+export const mouthAt = t => { const i = Math.floor(t * 30); return MOUTH[i] || 0; };

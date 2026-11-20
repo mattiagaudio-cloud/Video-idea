@@ -19,6 +19,13 @@ def coin(p=1.0):
 def soft_whoosh(d=.28): return lp(whoosh(d), 3000)
 def mixat(a, b, dt):
     b = np.pad(b, (int(dt * SR), 0)); n = max(len(a), len(b)); return np.pad(a, (0, n - len(a))) + np.pad(b, (0, n - len(b)))
+
+def sq(f0, f1, d, duty=.5, tau=None):
+    tt = t_(d); f = np.linspace(f0, f1, len(tt)); ph = np.cumsum(f) / SR; x = np.where((ph % 1) < duty, 1.0, -1.0)
+    return x * (env_exp(d, tau) if tau else 1.0) * .5
+def seq(notes, dur=.07, duty=.5):
+    out = [sq(f, f, dur, duty, dur * .8) for f in notes]; return np.concatenate(out)
+def crush(x, bits=4): return np.round(x * (2 ** bits)) / (2 ** bits)
 def boom(): return norm(tone(90, 45, 1.2, .35) + lp(noise(1.2), 200) * env_exp(1.2, .08) * .4)
 def sweepfx(): return norm(bp(noise(.5), 2000, 9000) * np.sin(np.pi * t_(.5) / .5) ** 2)
 def flap(n=6):
@@ -41,6 +48,20 @@ MAPS = {
               'swoosh': (lambda: soft_whoosh(.22), .12), 'ding': (lambda: bell(1046, 1.0, .25), .18), 'thump': (lambda: thump(.8, 90), .3),
               'key': (lambda: click(1.6, .5), .14), 'pulse': (lambda: tone(400, 900, .35, .12), .12)},
 }
+MAPS['pixel'] = {'alert': (lambda: seq([880, 1320, 1760], .05), .5), 'boom': (lambda: crush(boom(), 5), .35), 'blip': (lambda: sq(1200, 1200, .05, .25, .03), .3),
+    'shatter': (lambda: crush(norm(hp(noise(.4), 800) * env_exp(.4, .1)), 3), .35), 'fanfare': (lambda: seq([523, 659, 784, 1046, 784, 1046], .08), .4),
+    'menu': (lambda: sq(660, 990, .06, .5, .05), .25), 'ok': (lambda: seq([784, 1175], .07), .35), 'type': (lambda: sq(1500, 1500, .025, .5, .015), .2),
+    'chest': (lambda: seq([392, 494, 587, 784], .05), .35), 'coins': (lambda: seq([1318, 1568] * 4, .045, .25), .3), 'coin': (lambda: seq([988, 1318], .06, .25), .35),
+    'coinUp': (lambda: seq([988, 1318, 1760], .06, .25), .35), 'step': (lambda: seq([200, 0.001, 200], .04), .2)}
+MAPS['toon'] = {'zap': (lambda: norm(mixat(tone(1800, 200, .35, .12), boom() * .5, 0)), .45), 'whoosh': (lambda: soft_whoosh(.25), .25), 'pop': (lambda: pop(), .35),
+    'click': (lambda: click(1.2, .7), .3), 'snap': (lambda: norm(mixat(clack(1.6, 1), tone(900, 300, .2, .06), .01)), .45), 'thud': (lambda: thump(.9, 70), .45),
+    'ding': (lambda: bell(1318, .9, .2), .22), 'portal': (lambda: norm(tone(200, 1400, .6, .4) * np.sin(np.pi * t_(.6) / .6) + bp(noise(.6), 1500, 6000) * .2), .3),
+    'coin': (lambda: coin(1.0), .2), 'cash': (lambda: mixat(bell(1046, 1.0, .25), bell(1568, .8, .2), .08), .25), 'ting': (lambda: coin(1.4), .35),
+    'holo': (lambda: norm(tone(600, 1200, .3, .15) + tone(900, 1800, .3, .1) * .5), .2), 'boing': (lambda: norm(tone(180, 520, .35, .2) * (1 + .3 * np.sin(2 * np.pi * 18 * t_(.35)))), .35)}
+MAPS['anime'] = {'hit': (lambda: norm(mixat(boom(), bp(noise(.3), 2000, 8000) * env_exp(.3, .05), 0)), .5), 'neon': (lambda: norm((bp(noise(.35), 100, 400) * .6 + tone(120, 120, .35, .3)) * (np.floor(t_(.35) * 30) % 3 > 0)), .3),
+    'swish': (lambda: whoosh(.22), .3), 'shine': (lambda: mixat(bell(2093, 1.0, .25), bell(3136, .8, .2), .05), .22), 'tap': (lambda: click(1.3, .7), .3),
+    'ok': (lambda: mixat(bell(1046, .7, .2), bell(1568, .7, .2), .07), .22), 'ting': (lambda: coin(1.3), .3), 'buzz': (lambda: norm(tone(120, 120, .12, .08) + bp(noise(.12), 300, 900) * .3), .18),
+    'coin': (lambda: mixat(coin(1.0), bell(1568, .6, .15), .03), .25)}
 M = MAPS[STYLE]; fx = np.zeros((N, 2))
 for i, e in enumerate(E['ev']):
     if e['type'] not in M: print('no sound for', e['type']); continue
