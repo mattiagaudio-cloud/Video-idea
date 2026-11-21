@@ -1,0 +1,121 @@
+[
+ {
+  "id": "l00",
+  "text": "Stanotte, tutti i tuoi amici giocheranno a GTA 6.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it"
+ },
+ {
+  "id": "l01",
+  "text": "Ottanta euro spesi.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.6
+ },
+ {
+  "id": "l02",
+  "text": "Decine di ore... bruciate.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.4
+ },
+ {
+  "id": "l03",
+  "text": "Tu no.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.8
+ },
+ {
+  "id": "l04",
+  "text": "Tu farai una mossa diversa.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.35
+ },
+ {
+  "id": "l05",
+  "text": "Apri un conto Buddy, con un codice amico.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.6
+ },
+ {
+  "id": "l06",
+  "text": "Ottanta euro di bonus.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.4
+ },
+ {
+  "id": "l07",
+  "text": "GTA... pagato.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.35
+ },
+ {
+  "id": "l08",
+  "text": "Ma il vero gioco inizia adesso.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.8
+ },
+ {
+  "id": "l09",
+  "text": "Mandi il tuo codice a chi vuole GTA.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.45
+ },
+ {
+  "id": "l10",
+  "text": "Ogni amico che si iscrive: cinquanta euro.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.4
+ },
+ {
+  "id": "l11",
+  "text": "A te.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.25
+ },
+ {
+  "id": "l12",
+  "text": "Loro giocano.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.7
+ },
+ {
+  "id": "l13",
+  "text": "Tu incassi.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.35
+ },
+ {
+  "id": "l14",
+  "text": "Il codice è sullo schermo. Le condizioni, nel link in bio.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.7
+ }
+]

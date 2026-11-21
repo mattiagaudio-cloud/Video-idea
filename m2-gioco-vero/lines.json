@@ -1,0 +1,113 @@
+[
+ {
+  "id": "l00",
+  "text": "GTA 6 è appena uscito.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it"
+ },
+ {
+  "id": "l01",
+  "text": "E qualcuno ci sta già guadagnando.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.35
+ },
+ {
+  "id": "l02",
+  "text": "Senza toccare un joystick.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.35
+ },
+ {
+  "id": "l03",
+  "text": "Tutti vogliono GTA.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.7
+ },
+ {
+  "id": "l04",
+  "text": "Nessuno vuole pagarlo.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.3
+ },
+ {
+  "id": "l05",
+  "text": "È qui che entri tu.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.6
+ },
+ {
+  "id": "l06",
+  "text": "Ti iscrivi a Buddy con un codice amico: ottanta euro.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.4
+ },
+ {
+  "id": "l07",
+  "text": "GTA costa settantanove e novantanove.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.6
+ },
+ {
+  "id": "l08",
+  "text": "Fai i conti.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.3
+ },
+ {
+  "id": "l09",
+  "text": "Poi inviti chi vuole GTA gratis.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.7
+ },
+ {
+  "id": "l10",
+  "text": "Cinquanta euro. Per ogni amico.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.35
+ },
+ {
+  "id": "l11",
+  "text": "Mentre loro inseguono missioni...",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.7
+ },
+ {
+  "id": "l12",
+  "text": "tu costruisci qualcosa.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.2
+ },
+ {
+  "id": "l13",
+  "text": "Il codice è sullo schermo. Condizioni nel link in bio.",
+  "voice": "im_nicola",
+  "speed": 0.86,
+  "lang": "it",
+  "gap": 0.7
+ }
+]

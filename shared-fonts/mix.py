@@ -81,6 +81,14 @@ MAPS['trailer'] = {'boom': (lambda: norm(mixat(boom(), bp(noise(.4), 100, 3000) 
     'cut': (lambda: thump(.8, 60), .3), 'tap': (lambda: click(1.3, .7), .28), 'ok': (lambda: mixat(bell(1046, .6, .15), bell(1568, .6, .15), .07), .2),
     'cash': (lambda: mixat(bp(noise(.35), 1000, 6000) * env_exp(.35, .08), bell(2093, .5, .1) * .5, .05), .3), 'hit': (lambda: thump(1, 80), .45),
     'slap': (lambda: norm(bp(noise(.08), 800, 5000) * env_exp(.08, .015)), .35), 'ting': (lambda: coin(1.4), .35), 'whoosh': (lambda: soft_whoosh(.35), .3)}
+def drone(d=44.0):
+    tt = t_(d); x = sum(a * np.sin(2 * np.pi * f * tt + 3 * np.sin(2 * np.pi * .05 * tt * (k + 1))) for k, (f, a) in enumerate([(55, 1), (82.4, .5), (110, .35), (164.8, .12)]))
+    x = x * (.7 + .3 * np.sin(2 * np.pi * .07 * tt)) + lp(noise(d), 400) * .15; fade = np.minimum(1, tt / 3) * np.minimum(1, (d - tt) / 3); return norm(x * fade)
+def deephit():
+    d = 2.2; tt = t_(d); x = np.sin(2 * np.pi * 48 * tt * (1 - .15 * tt)) * env_exp(d, .5) + lp(noise(d), 180) * env_exp(d, .12) * .6
+    tail = lp(noise(d), 900) * env_exp(d, .7) * .08; return norm(x + tail)
+MAPS['dark'] = {'whoosh': (lambda: lp(whoosh(.45), 2500), .22), 'hit': (deephit, .55), 'drone': (drone, .16), 'heart': (lambda: heartbeat(), .5),
+    'cash': (lambda: mixat(coin(.9), coin(1.2), .06), .18)}
 M = MAPS[STYLE]; fx = np.zeros((N, 2))
 for i, e in enumerate(E['ev']):
     if e['type'] not in M: print('no sound for', e['type']); continue
