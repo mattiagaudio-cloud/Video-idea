@@ -49,12 +49,27 @@ const S = [
       bubble('LINK IN BIO ↑', 540, 1020, A(t, wt(l, /link/i) - .1, .25), '#3ad17a', '#fff', 80); },
 ];
 
+
+// ———— TikTok-style captions: 2–3 words at a time, the spoken word in yellow ————
+function chunks(L) { const out = []; for (const l of L) { let cur = []; l.words.forEach((w, i) => { cur.push(w); const end = /[.,:?!…]$/.test(w.w) || cur.length >= 3 || cur.map(x => x.w).join(' ').length > 15 || i === l.words.length - 1; if (end) { out.push(cur); cur = []; } }); } return out; }
+function captions(t, CH) {
+  let c = null; for (const ch of CH) if (t >= ch[0].t0 - .05 && t < ch[ch.length - 1].t1 + .25) c = ch; if (!c) return;
+  const words = c.map(w => w.w.replace(/\.\.\.$/, '…')), px = 96; font(px, "'Lilita One'"); X.textBaseline = 'middle'; X.lineJoin = 'round';
+  const sp = X.measureText(' ').width * 1.9, ws = words.map(w => X.measureText(w).width); let tot = ws.reduce((a, b) => a + b, 0) + sp * (words.length - 1), sc = Math.min(1, 980 / tot);
+  const y = 215, appear = back(clamp((t - c[0].t0 + .05) / .12), 2.2);
+  X.save(); X.translate(540, y); X.scale(sc * appear, sc * appear); let x = -tot / 2;
+  words.forEach((w, i) => { const on = t >= c[i].t0 - .03 && t < (c[i + 1] ? c[i + 1].t0 - .03 : 1e9), k = on ? 1 + .1 * (1 - clamp((t - c[i].t0) / .12)) : 1;
+    X.save(); X.translate(x + ws[i] / 2, 0); X.scale(k, k); X.textAlign = 'center'; X.lineWidth = 18; X.strokeStyle = '#140c1c'; X.strokeText(w, 0, 0); X.fillStyle = on ? '#ffd23a' : '#ffffff'; X.fillText(w, 0, 0); X.restore(); x += ws[i] + sp; });
+  X.restore();
+}
+
 fetch('timeline.json').then(r => r.json()).then(TL => {
-  const L = TL.lines;
+  const L = TL.lines, CH = chunks(L);
   function render(t) {
     X.setTransform(SC, 0, 0, SC, 0, 0); ST.BOIL = Math.floor(t * 12) % 3; ST.ZOOM = 1; X.fillStyle = '#000'; X.fillRect(0, 0, W, H);
     let i = 0; for (let k = 0; k < L.length; k++) if (t >= L[k].t0 - .2) i = k;
     S[i](t, L[i]);
+    captions(t, CH);
     const k = seg(t, L[i].t0 - .2, L[i].t0 - .12); if (i && k > 0 && k < 1) { X.fillStyle = `rgba(255,255,255,${.35 * (1 - k)})`; X.fillRect(0, 0, W, H); }
   }
   const EV = [{ t: 0, type: 'zap' }]; L.forEach((l, k) => { if (k) EV.push({ t: l.t0 - .2, type: 'whoosh' }); });
